@@ -1,5 +1,28 @@
 let todoItemContainer = document.getElementById("todoItemsContainer");
 let addTodo=document.getElementById("addtodobutton");
+let saveButton = document.getElementById("saveTodoButton");
+
+
+
+function getTodoLIstFromLocalStorage() {
+    let stringified = localStorage.getItem("todoList");
+    let parseTOdo = JSON.parse(stringified);
+    if (parseTOdo === null) {
+        return [];
+    } else {
+        return parseTOdo;
+    }
+}
+
+let todoList = getTodoLIstFromLocalStorage();
+
+
+
+saveButton.onclick = function() {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+}
+
+
 addTodo.onclick=function(){
     newTodo()
 }
@@ -7,24 +30,6 @@ function  deleteTodo( todoId){
   let todoEle = document.getElementById(todoId);
   todoItemContainer.removeChild(todoEle);
 }
-let todoList=[
-{
-    text:"Learn HTML",
-    uniqueId:1
-},
-{
-    text:"Learn CSS",
-    uniqueId:2
-},
-{
-    text:"Learn JavaScript",
-    uniqueId:3
-},
-{
-    text:"React",
-    uniqueId:4
-}
-];
  function onTodoChecked(checkboxId,labelboxId){
     let checkedElement = document.getElementById(checkboxId);
     console.log(checkedElement)
