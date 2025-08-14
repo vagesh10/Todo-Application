@@ -102,6 +102,8 @@ function newTodo(){
         text:inputValue,
         uniqueId:todoCount
     }
+    todoList.push(newTodo);
+    console.log(todoList);
     createAndAppendTodo(newTodo);
     inputValue.value=""
 
